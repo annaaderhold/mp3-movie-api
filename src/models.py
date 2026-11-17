@@ -1,8 +1,11 @@
 from pydantic import BaseModel, Field
 
+
+
 class HealthResponse(BaseModel):
     status: str
     version: str
+
 
 class DatasetInfo(BaseModel):
     id: int
@@ -10,6 +13,7 @@ class DatasetInfo(BaseModel):
     rows: int
     columns: int
     column_names: list[str]
+
 
 class ValidationSettings(BaseModel):
     required_columns: list[str] = Field(default_factory=list)
@@ -43,3 +47,21 @@ class ProcessingReport(BaseModel):
     id: int
     validation_rows_removed: int
     cleaning_report: dict[str, int]
+
+
+
+class MovieUploadInfo(BaseModel):
+    filename: str
+    rows: int
+    columns: int
+    column_names: list[str]
+
+
+class MovieDataResponse(BaseModel):
+    data: list[dict]
+    total_rows: int
+
+
+class MovieProcessingReport(BaseModel):
+    validation_rows_removed: int
+    cleaning_report: dict
